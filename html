@@ -1,0 +1,137 @@
+<!-- Gabriel Hurtado -->
+<!-- Da palindrome checker. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palindrome Checker</title>
+    <style>
+        /* Set a background image for the page */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url('https://media1.tenor.com/m/wxQE20-l9hMAAAAC/motion-motion-cat.gif') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        /* Style the main container */
+        .container {
+            text-align: center;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 300px;
+        }
+
+        /* Style the header */
+        h1 {
+            font-size: 24px;
+            color: #ff6b6b;
+        }
+
+        /* Style the input field */
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        /* Style the buttons */
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .check-btn {
+            background-color: #ff6b6b;
+            color: white;
+        }
+
+        .check-btn:hover {
+            background-color: #e65555;
+        }
+
+        .exit-btn {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .exit-btn:hover {
+            background-color: #bbb;
+        }
+
+        /* Style the result message */
+        .result {
+            margin-top: 15px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- Main container for the palindrome checker -->
+    <div class="container">
+        <!-- Title of the application -->
+        <h1>Palindrome Checker</h1>
+        <!-- Input field for the user to enter a string -->
+        <input type="text" id="userInput" placeholder="Enter a word" />
+        <br>
+        <!-- Button to check if the string is a palindrome -->
+        <button class="check-btn" onclick="checkPalindrome()">Check</button>
+        <!-- Button to exit the application -->
+        <button class="exit-btn" onclick="exitChecker()">Exit</button>
+        <!-- Placeholder for displaying the result -->
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        // Function to check if the string is a palindrome
+        function checkPalindrome() {
+            // Get the user input and remove spaces
+            const userInput = document.getElementById('userInput').value.trim();
+            
+            // Check if the input is empty
+            if (!userInput) {
+                document.getElementById('result').innerText = "Please enter a valid word!";
+                return;
+            }
+
+            // Convert input to lowercase and remove spaces for palindrome check
+            const sanitizedInput = userInput.replace(/\s+/g, '').toLowerCase();
+            // Reverse the string and compare with the original
+            const isPalindrome = sanitizedInput === sanitizedInput.split('').reverse().join('');
+
+            // Display the result to the user
+            const resultElement = document.getElementById('result');
+            if (isPalindrome) {
+                resultElement.innerText = `\u2705 "${userInput}" is a palindrome!`;
+            } else {
+                resultElement.innerText = `\u274C "${userInput}" is not a palindrome.`;
+            }
+        }
+
+        // Function to exit the checker
+        function exitChecker() {
+            // Display a goodbye message and disable the interface
+            document.getElementById('result').innerText = "Thank you for using the Palindrome Checker!";
+            document.getElementById('userInput').disabled = true;
+            document.querySelector('.check-btn').disabled = true;
+            document.querySelector('.exit-btn').disabled = true;
+        }
+    </script>
+</body>
+</html>
